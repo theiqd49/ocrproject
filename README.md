@@ -1,7 +1,7 @@
 # ocrproject
 mobile application with OCR implemented using React Native
 
-ocr2019: frontend mobile development
+ocr2019: frontend mobile development\n
 ocrBackend: backend server development
 
 ocr2019/App.js: main file
