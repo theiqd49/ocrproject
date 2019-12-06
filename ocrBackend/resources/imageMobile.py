@@ -6,6 +6,7 @@ import numpy as np
 import cv2
 import urllib.request
 from models.ocr_api import pre_processing
+from models.ocr_api import make_prediction
 from unidecode import unidecode
 
 LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s"
@@ -29,11 +30,12 @@ class ImageMobile(Resource):
         
         # pre-process image
         img = pre_processing(img)
-        
+        #
+        text = make_prediction(img)
         # for debugging purposes
-        ret, jpeg = cv2.imencode('.png', img)
-        response = make_response(jpeg.tobytes())
-        response.headers['Content-Type'] = 'image/png'
-        return response
+        #ret, jpeg = cv2.imencode('.png', img)
+        #response = make_response(jpeg.tobytes())
+        #response.headers['Content-Type'] = 'image/png'
+        #return response
             
-        #return make_response(jsonify({"message": img_src}), 200)
+        return make_response(jsonify({"message": text}), 200)

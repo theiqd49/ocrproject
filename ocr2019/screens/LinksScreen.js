@@ -57,7 +57,7 @@ export default class CameraScreen extends React.Component {
 				const response = await network.post('/imageMobile', report);
 				console.log("reports : " + response.data.message);
 				var test = "pikachuuu"
-				ToastAndroid.show('A ' + test + ' appeared nearby !', ToastAndroid.LONG);
+				ToastAndroid.show(response.data.message, ToastAndroid.LONG);
 			} catch (errorResponse) {
 			    console.log('errorResponse  ', errorResponse);
 				ToastAndroid.show(errorResponse, ToastAndroid.LONG);

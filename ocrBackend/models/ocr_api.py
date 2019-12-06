@@ -29,6 +29,10 @@ def pre_processing(img):
     img = cv2.erode(img, kernel, iterations = 5)
     
     #cv2.imwrite("removed_noise.png", img)
+    return img
+
+
+def make_prediction(img):
     
     is_success, im_buf_arr = cv2.imencode(".png", img)
 
@@ -36,11 +40,21 @@ def pre_processing(img):
     
     image = get_file_content('removed_noise.png')
     result = client.basicGeneral(image)
-    
+    if 'words_result' in result:
+        print(result)
+        print(result['words_result'])
+        return '\n'.join([w['words'] for w in result['words_result']])
+    else:
+        return 'nothing detected...'
     #result = pytesseract.image_to_string(img,lang="eng", config="-psm 7")
     
-    print(result)
-    return img
+    #print(result)
+
+
+
+
+
+
 
 
 
